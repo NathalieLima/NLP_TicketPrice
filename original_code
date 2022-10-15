@@ -1,0 +1,97 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait 
+from selenium.webdriver.common.by import By
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+
+
+while True:
+    # --------------------- INICIALIZAÇÃO DO DRIVER
+
+    options = webdriver.ChromeOptions()
+    #options.add_argument("--headless")
+    driver = webdriver.Chrome(options=options)
+
+    # dados_conexao = (
+    #             "Driver={SQL Server};Server=LAPTOP-P1NU1T5D\SQLEXPRESS;Database=SGU_CBG;Trusted_Connection=yes;MARS_Connection=yes;")
+    # conexao = pyodbc.connect(dados_conexao)
+    # print("Conexão bem sucedida\n")
+    # cursor = conexao.cursor()
+
+    # --------------------- INICIALIZAÇÃO DO DRIVER
+
+
+    site_hora = 'https://www.google.com/search?q=hora&oq=hora&aqs=chrome..69i57j69i59j0i131i433i512l3j69i61l3.1764j0j7&sourceid=chrome&ie=UTF-8'
+    site_allpassagens = "https://www.google.com/travel/flights/search?tfs=CBwQAhokagcIARIDSU9TEgoyMDIyLTExLTIycg0IAhIJL20vMDFseTVtGiRqDQgCEgkvbS8wMWx5NW0SCjIwMjItMTItMDVyBwgBEgNJT1NwAYIBCwj___________8BQAFIAZgBAQ&tfu=EgYIARABGAA&hl=pt-BR&gl=br&curr=BRL"
+    site_form = "https://forms.gle/VJwFEsGhM1YrZAZPA" 
+    site_busca = 'https://www.buscavoo.com.br/passagens-aereas?roundtrip=0&origin=ZlFIOVgzRm8vL0R3cXhGNEdjQjhaVFFUc3FCZFJ4bzZwQ1FuZnFPaHNMeVpYbzF5VFZSQnBoT1hJb1dHU0lXeC8xY0p5WHVaR215TjMxL0tDNmpwWmFNc1Z2NGlieFBRcEVZMVI3Z0ZhOEY1ODJzM1h0cExaalZuMzV6bHd2REdVbHo2K1JTY1d5UXNLV2NmN3RhQzhHbFdkNFBPclR1WXZibTBVMHRNS0RQeVJsRkVzRFNxd2p1cWxFenhybUJZa296RXZxUW9ZY3ZydnpmTlptUTYwSks5RWVmRkNxYnlhcFk5T2RzL1J0WU5uYWlEam81amlGQUNicE9DbnkzSjRvVXBVb1RINXppR1dlU1V5WVM5Znc9PQ%3D%3D&destin=K0U5elh3Mk1FTVpMUzhWSG42eFVqbVUwWWQ3dCtrR05ZTjVCSFhoVHNId1hpU2R4dkVEeW0xL1doSndLRGFzVHhRc1ppenFDWE92TzBvZURnSUxZV0VQWWR4Um5lUmViZi9kMTBnK2JQNGRQSWFJcndwRFBZSEc2aStZc0lUZVlCazlkSGNURUQ5bDlwM1laaTZ3TWJLYXdzcWk3M2N5dWR5d2J0QVRldW54dXRYTktiODVNZTQwZ05PWEIwZUZQOCtBbUtscEdWWlB6WVpJREVCWEU2RC82NVhXdWNRbXQvb1YwUDBHN1FJbUlwVkw2eDJWS2M2eEVpUjFlWkp6QWVMN201QUVaK3lwK0h4UWZWUllYN0E9PQ%3D%3D&calendarDeparture=22%2F11%2F2022&calendarReturn=05%2F12%2F2022&passenger=1+Econ%C3%B4mica&cabinClass=economy&infants=0&children=0&adults=1'
+
+    xp_hora = '//*[@id="rso"]/div[1]/div/div'
+    xp_allpassagens = ['//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[1]/div/div[2]/div',
+                 '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[2]/div/div[2]/div',
+                 '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[3]/div/div[2]/div',
+                 '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[4]/div/div[2]/div',
+                 '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[5]/div/div[2]/div',
+                 '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[6]/div/div[2]/div',
+                 '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[7]/div/div[2]/div',
+                 '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[2]/div[5]/ul/li[8]/div/div[2]/div']
+    campos = ['//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[5]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[7]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[8]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[9]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[10]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[11]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[12]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[13]/div/div/div[2]/div/div[1]/div/div[1]/input',
+              '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[14]/div/div/div[2]/div/div[1]/div/div[1]/input']
+    dados_geral = []
+
+    # --------------------- ENTRADA NO SITE DO GOOGLE PERSONALIZADO PRA HORA
+    
+    driver.get(site_busca)
+    oi = driver.find_element(By.XPATH, '/html/body/main/section[2]/div/div[2]')
+    print(oi.text)
+
+    driver.get(site_hora)
+
+    # --------------------- CAPTAÇÃO DA HORA ATUAL
+
+    hora = driver.find_element(By.XPATH, xp_hora) 
+    hora = hora.text.split("\n")
+    hora = ",".join(hora[1:3]).split(",")
+
+    # --------------------- ENTRADA NO SITE DO GOOGLE PERSONALIZADO PRAS PASSAGENS
+
+    driver.get(site_allpassagens)
+
+    # --------------------- INICIALIZAÇÃO DO DRIVER
+
+    for i, xp in enumerate(xp_allpassagens):
+        wait = WebDriverWait(driver, 10)
+        dados = wait.until(EC.element_to_be_clickable((By.XPATH, xp))).text.split("\n")
+        dados_geral.append(dados+hora)
+
+    # --------------------- INICIALIZAÇÃO DO DRIVER
+
+    driver.get(site_form)
+
+    # --------------------- INICIALIZAÇÃO DO DRIVER
+
+    for linha in dados_geral:
+        for i, dado in enumerate(linha):
+            wait = WebDriverWait(driver, 10)
+            insert = wait.until(EC.element_to_be_clickable((By.XPATH, campos[i])))
+            insert.send_keys(dado)
+        driver.find_element(By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div/span').click()
+        driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/div[4]/a[2]').click()
+        #print("Um preço de passagem foi enviado!")
+
+    # --------------------- INICIALIZAÇÃO DO DRIVER
+
+    driver.quit()
+    print("Uma rodagem de código foi concluída.")
