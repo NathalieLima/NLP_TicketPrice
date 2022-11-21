@@ -1,2 +1,2 @@
 # NLP_TicketPrice
-A code that I do when I was travel to the country Argentina.
+This code I did before I travel to the country Argentina.
